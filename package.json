@@ -1,0 +1,19 @@
+{
+  "name": "cse341-project1",
+  "version": "1.0.0",
+  "description": "My First Project with Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgeemedia/cse341-project1.git"
+  },
+  "author": "George Olumah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dgeemedia/cse341-project1/issues"
+  },
+  "homepage": "https://github.com/dgeemedia/cse341-project1#readme"
+}

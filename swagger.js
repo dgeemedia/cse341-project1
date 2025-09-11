@@ -1,4 +1,5 @@
 // swagger.js
+// Run: `node swagger.js` or add "swagger": "node swagger.js" to package.json scripts
 const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
@@ -8,7 +9,7 @@ const doc = {
   },
   host: process.env.SWAGGER_HOST || 'localhost:3000',
   schemes: ['http'],
-  // add reusable definitions (examples) to reference from paths
+  // reusable example object for request bodies
   definitions: {
     Contact: {
       firstName: "John",
@@ -18,8 +19,18 @@ const doc = {
       birthday: "1990-01-01"
     }
   },
-  // add/override explicit path info for PUT /contacts/{id}
+  // Explicitly add POST/PUT path definitions so Swagger UI shows body editors
   paths: {
+    "/contacts/": {
+      post: {
+        description: "Create a contact",
+        consumes: ["application/json"],
+        parameters: [
+          { name: "body", in: "body", required: true, schema: { $ref: "#/definitions/Contact" } }
+        ],
+        responses: { 201: { description: "Created" }, 400: { description: "Bad Request" }, 500: { description: "Internal Server Error" } }
+      }
+    },
     "/contacts/{id}": {
       put: {
         description: "Update a contact by ID",
@@ -28,12 +39,7 @@ const doc = {
           { name: "id", in: "path", required: true, type: "string", description: "Contact id" },
           { name: "body", in: "body", required: true, schema: { $ref: "#/definitions/Contact" } }
         ],
-        responses: {
-          200: { description: "OK" },
-          400: { description: "Bad Request" },
-          404: { description: "Not Found" },
-          500: { description: "Internal Server Error" }
-        }
+        responses: { 200: { description: "OK" }, 400: { description: "Bad Request" }, 404: { description: "Not Found" }, 500: { description: "Internal Server Error" } }
       }
     }
   }

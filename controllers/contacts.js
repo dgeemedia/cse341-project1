@@ -1,11 +1,11 @@
 // controllers/contacts.js
-// Copy this file to controllers/contacts.js
 const db = require('../data/database');
 const { ObjectId } = require('mongodb');
 
 // Helper for consistent collection name used by routes (/contacts)
 const COLLECTION = 'contacts';
 
+// Get all users
 async function getAllUsers(req, res) {
   try {
     const database = db.getDb();
@@ -20,6 +20,7 @@ async function getAllUsers(req, res) {
   }
 }
 
+// Get a single user by ID
 async function getUserById(req, res) {
   try {
     const database = db.getDb();
@@ -40,6 +41,7 @@ async function getUserById(req, res) {
   }
 }
 
+// Create a new user
 async function createUser(req, res) {
   try {
     const database = db.getDb();
@@ -66,6 +68,7 @@ async function createUser(req, res) {
   }
 }
 
+// Update an existing user by ID
 async function updateUser(req, res) {
   try {
     const database = db.getDb();
@@ -115,6 +118,7 @@ async function updateUser(req, res) {
   }
 }
 
+// delete an existing user by ID
 async function deleteUser(req, res) {
   try {
     const database = db.getDb();
